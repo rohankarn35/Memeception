@@ -1,16 +1,27 @@
-# random_meme_generator
+<h1 align="center" id="title">Memeception</h1>
 
-A new Flutter project.
+<p align="center"><img src="https://socialify.git.ci/rohankarn35/Memeception/image?description=1&amp;language=1&amp;name=1&amp;owner=1&amp;stargazers=1&amp;theme=Light" alt="project-image"></p>
 
-## Getting Started
+<h2>🚀 Demo</h2>
 
-This project is a starting point for a Flutter application.
+[https://bit.ly/43JYQNl](https://bit.ly/43JYQNl)
 
-A few resources to get you started if this is your first Flutter project:
+<h2>🛠️ Installation Steps:</h2>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<p>1. Download from the given link</p>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<p>2. Install the app (If it says harmful ignore that)</p>
+
+<h2>🍰 Contribution Guidelines:</h2>
+
+Contribution to this project will be appreciated
+
+  
+  
+<h2>💻 Built with</h2>
+
+Technologies used in the project:
+
+*   Flutter
+*   API
+*   Dart
