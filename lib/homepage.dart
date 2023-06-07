@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -8,6 +10,9 @@ import 'package:random_meme_generator/APIFETCH/APIMODEL.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+
 
 class home extends StatefulWidget {
   home({super.key});
@@ -17,7 +22,6 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
-
   bool isloading = true;
   String imgurl = "";
   String bttntxt = "Start";
@@ -45,6 +49,36 @@ class _homeState extends State<home> {
     final path = '${temp.path}/image.jpg';
     File(path).writeAsBytesSync(bytes);
     await Share.shareFiles([path], text: 'Meme Shared via Memeception App');
+  }
+   late StreamSubscription subscription;
+  bool isconnected = false;
+  bool isalert = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getconnectivity();
+    super.initState();
+  }
+
+  getconnectivity() =>
+      subscription = Connectivity().onConnectivityChanged.listen(
+        (ConnectivityResult result) async {
+          isconnected = await InternetConnectionChecker().hasConnection;
+          if (!isconnected && isalert == false){
+            showDialogBox();
+            setState(() {
+              isalert = true;
+            });
+          }
+        },
+      );
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    subscription.cancel();
+    super.dispose();
   }
 
   @override
@@ -134,5 +168,29 @@ class _homeState extends State<home> {
         ]),
       ),
     );
+    
   }
+  showDialogBox() => showCupertinoDialog<String>(
+        context: context,
+        builder: (BuildContext context) => CupertinoAlertDialog(
+          title: const Text('No Connection'),
+          content: const Text('Please check your internet connectivity'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () async {
+                Navigator.pop(context, 'Cancel');
+                setState(() => isalert = false);
+                isconnected =
+                    await InternetConnectionChecker().hasConnection;
+                if (!isconnected && isalert == false) {
+                  showDialogBox();
+                  setState(() => isalert = true);
+                }
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+  
 }
