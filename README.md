@@ -4,7 +4,7 @@
 
 <h2>🚀 Demo</h2>
 
-<p>Click on View Raw to download  </p> [https://bit.ly/43JYQNl](https://bit.ly/43JYQNl)
+<p>Click on View Raw to download  </p> (https://bit.ly/43JYQNl)
 
 <h2>🛠️ Installation Steps:</h2>
 
