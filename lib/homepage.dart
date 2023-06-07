@@ -91,9 +91,9 @@ class _homeState extends State<home> {
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           // SizedBox(height: 40,),
-          SizedBox(
-            height: 100,
-          ),
+          // SizedBox(
+          //   height: 100,
+          // ),
 
           InkWell(
             onDoubleTap: () async {
@@ -127,7 +127,7 @@ class _homeState extends State<home> {
                       )),
           ),
           SizedBox(
-            height: 50,
+            height: 30,
           ),
           ElevatedButton(
               onPressed: () {
