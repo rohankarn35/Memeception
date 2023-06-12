@@ -4,14 +4,13 @@ import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:random_meme_generator/APIFETCH/APIMODEL.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class home extends StatefulWidget {
@@ -83,89 +82,103 @@ class _homeState extends State<home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Memeception"),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          // SizedBox(height: 40,),
-          // SizedBox(
-          //   height: 100,
-          // ),
-
-          InkWell(
-            onDoubleTap: () async {
-              print("share cllicked");
-              await shareImage();
-            },
-            child: Container(
-                margin: EdgeInsets.all(20),
-                height: 400,
-                width: 500,
-                child: isloading
-                    ? Center(
-                        child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: 30,
-                            width: 30,
-                            child: CircularProgressIndicator(),
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Text("Double-tap the image to share")
-                        ],
-                      ))
-                    : Image.network(
-                        imgurl,
-                        height: 400,
-                        width: 500,
-                      )),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          ElevatedButton(
-              onPressed: () {
-                print("Clicked()");
-                ImageMeme();
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Memeception"),
+          centerTitle: true,
+          actions: [
+            PopupMenuButton(
+             itemBuilder: (BuildContext context) {
+      return  [
+        PopupMenuItem(
+          child: Text("Developed By Rohan Karn"),
+        ),
+       
+      ];
+      },
+            
+            
+            
+            )
+            
+          ],
+        ),
+        body: Center(
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            InkWell(
+              onDoubleTap: () async {
+                //print("share cllicked");
+                await shareImage();
               },
-              style: ButtonStyle(
-                  shadowColor: MaterialStatePropertyAll(Colors.black),
-                  elevation: MaterialStatePropertyAll(10)),
-              child: Text(
-                bttntxt,
-                style: TextStyle(fontSize: 15),
-              )),
-          SizedBox(
-            height: 15,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.warning_rounded,
-                color: Colors.red,
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Text(
-                "Meme may contain adult content !!",
-                style: TextStyle(fontSize: 15, color: Colors.red),
-              ),
-            ],
-          ),
-
-          Spacer(),
-          //   SizedBox(height: 100,),
-
-          Text("Developed By Rohan Karn")
-        ]),
+              child: 
+              Container(
+                  margin: EdgeInsets.all(20),
+                  height: 400,
+                  width: 500,
+                  child: isloading
+                      ? const Center(
+                          child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 40,
+                              width: 40,
+                              child: CircularProgressIndicator(),
+                            ),
+                            // SizedBox(
+                            //   height: 30,
+                            // ),
+                            // Text("Double-tap the image to share")
+                          ],
+                        ))
+                      : Image.network(
+                          imgurl,
+                          height: 500,
+                          width: 500,
+                                    )),
+            ),
+           const  SizedBox(
+              height: 30,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  print("Clicked()");
+                  ImageMeme();
+                },
+                style: const ButtonStyle(
+                    shadowColor: MaterialStatePropertyAll(Colors.black),
+                    elevation: MaterialStatePropertyAll(10)),
+                child: Text(
+                  bttntxt,
+                  style: TextStyle(fontSize: 15),
+                )),
+           const SizedBox(
+              height: 25,
+            ),
+           const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.warning_rounded,
+                  color: Colors.red,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  "Meme may contain adult content !!",
+                  style: TextStyle(fontSize: 15, color: Colors.red),
+                ),
+              ],
+            ),
+    
+            // Spacer(),
+            // //   SizedBox(height: 100,),
+    
+            // Text("Developed By Rohan Karn")
+          ]),
+        ),
       ),
     );
     
@@ -192,5 +205,12 @@ class _homeState extends State<home> {
           ],
         ),
       );
+  // Future<void> _launchURL(String url) async {
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
   
 }

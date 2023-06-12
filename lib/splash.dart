@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:random_meme_generator/homepage.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -17,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 5), ()=> Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>home())));
+    Timer(const Duration(seconds: 3), ()=> Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>home())));
   }
   @override
   Widget build(BuildContext context) {
@@ -30,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           
           Image.asset("assets/meme.png",),
-          Text("Memeception",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 35),)
+          const Text("Memeception",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 35),)
         ],
       )
       ),
