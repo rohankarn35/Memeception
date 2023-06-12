@@ -5,7 +5,7 @@
 <h2>🚀 Demo</h2>
 
 <p>Open this link and click on View Raw to download  </p> (https://bit.ly/43JYQNl)
-<p>CLick on this link for web app </p> (https://memeception.web.app/#/)
+
 
 <h2>🛠️ Installation Steps:</h2>
 
